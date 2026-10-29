@@ -16,4 +16,4 @@ jobs:
       - name: Build
         run: cmake --build --preset debug --parallel
       - name: Test
-        run: cmake --preset debug --output-on-failure
+        run: ctest --preset debug --output-on-failure
