@@ -1,5 +1,0 @@
-if(EXISTS "/Users/dhruvgupta/Projects/RiskForge/build/debug/tests/riskforge_tests_e3b0c442_tests.cmake")
-  include("/Users/dhruvgupta/Projects/RiskForge/build/debug/tests/riskforge_tests_e3b0c442_tests.cmake")
-else()
-  add_test(riskforge_tests_NOT_BUILT riskforge_tests_NOT_BUILT)
-endif()
