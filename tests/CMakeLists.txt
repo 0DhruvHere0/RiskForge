@@ -8,10 +8,15 @@ set(INSTALL_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 add_executable(riskforge_tests
     smoke_test.cpp
+    random/philox_test.cpp
 )
-target_compile_features(riskforge_tests PRIVATE cxx_std_20)
+target_compile_features(riskforge_tests 
+    PRIVATE 
+        cxx_std_20
+)
 target_link_libraries(riskforge_tests
     PRIVATE
+        riskforge
         GTest::gtest_main
 )
 include(GoogleTest)
