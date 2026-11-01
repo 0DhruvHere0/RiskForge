@@ -12,6 +12,7 @@ add_library(riskforge
     src/random/philox.cpp
     src/random/uniform.cpp
     src/random/normal.cpp
+    src/Simulation/gbm.cpp
 )
 target_compile_features(riskforge
     PUBLIC
