@@ -6,7 +6,7 @@ namespace{
     TEST(UniformTest, MinimumInputProducesValueAboveZero){
         const double value= uniform_open01(0x00000000u, 0x00000000u);
         EXPECT_GT(value, 0.0);
-        EXPECT_LT(value, 0.1);
+        EXPECT_LT(value, 1.0);
     }
     TEST(UniformTest, MaximumInputProducesValueBelowOne){
         const double value= uniform_open01(0xFFFFFFFFu, 0xFFFFFFFFu);

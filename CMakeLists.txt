@@ -11,6 +11,7 @@ include(CTest)
 add_library(riskforge
     src/random/philox.cpp
     src/random/uniform.cpp
+    src/random/normal.cpp
 )
 target_compile_features(riskforge
     PUBLIC
