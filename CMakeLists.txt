@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include(CTest)
 add_library(riskforge
     src/random/philox.cpp
+    src/random/uniform.cpp
 )
 target_compile_features(riskforge
     PUBLIC

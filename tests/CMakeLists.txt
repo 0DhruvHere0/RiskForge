@@ -9,6 +9,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(riskforge_tests
     smoke_test.cpp
     random/philox_test.cpp
+    random/uniform_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
