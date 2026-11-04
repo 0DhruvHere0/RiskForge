@@ -13,6 +13,7 @@ add_library(riskforge
     src/random/uniform.cpp
     src/random/normal.cpp
     src/Simulation/gbm.cpp
+    src/risk/tail.cpp
 )
 target_compile_features(riskforge
     PUBLIC

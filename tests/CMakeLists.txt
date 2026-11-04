@@ -12,6 +12,7 @@ add_executable(riskforge_tests
     random/uniform_test.cpp
     random/normal_test.cpp
     simulation/gbm_test.cpp
+    risk/tail_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
