@@ -14,6 +14,8 @@ add_library(riskforge
     src/random/normal.cpp
     src/Simulation/gbm.cpp
     src/risk/tail.cpp
+    src/risk/var.cpp
+    src/risk/expected_shortfall.cpp
 )
 target_compile_features(riskforge
     PUBLIC

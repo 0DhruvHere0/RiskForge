@@ -13,6 +13,8 @@ add_executable(riskforge_tests
     random/normal_test.cpp
     simulation/gbm_test.cpp
     risk/tail_test.cpp
+    risk/var_test.cpp
+    risk/expected_shortfall_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
