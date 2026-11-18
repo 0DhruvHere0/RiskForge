@@ -11,6 +11,9 @@ namespace riskforge::risk{
             double time,
             double confidence_level
         ){
+            if (!std::isfinite(initial_price)||initial_price<=0.0){
+                throw std::invalid_argument("initial_price must be positive");
+            }
             if (!std::isfinite(drift)){
                 throw std::invalid_argument("drift must be finite");
             }
@@ -20,7 +23,7 @@ namespace riskforge::risk{
             if (!std::isfinite(time)|| time<0.0){
                 throw std::invalid_argument("time must be non-negative and finite");
             }
-            if (!std::isfinite(confidence_level)|| confidence_level<=0.0|| confidence_level>-1.0){
+            if (!std::isfinite(confidence_level)|| confidence_level<=0.0|| confidence_level>=1.0){
                 throw std::invalid_argument("confidence must be between 0 and 1");
             }
         }
@@ -40,9 +43,9 @@ namespace riskforge::risk{
             confidence_level
         );
         const double lower_tail_probability= 1.0- confidence_level;
-        const double standard_normal_quantile= random::normal_ppf(lower_tail_probability);
-        const double log_return= (drift- 0.5*volatility*volatility)*time +volatility*std::sqrt(time)*standard_normal_quantile;
-        const double lower_price= initial_price- std::exp(log_return);
-        return initial_price-lower_price;
+        const double z= random::normal_ppf(lower_tail_probability);
+        const double log_return= (drift- 0.5*volatility*volatility)*time +volatility*std::sqrt(time)*z;
+        const double lower_terminal_price= initial_price* std::exp(log_return);
+        return initial_price-lower_terminal_price;
     }
 }

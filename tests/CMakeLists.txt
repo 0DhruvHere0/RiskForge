@@ -15,6 +15,8 @@ add_executable(riskforge_tests
     risk/tail_test.cpp
     risk/var_test.cpp
     risk/expected_shortfall_test.cpp
+    risk/deterministic_reduction_test.cpp
+    risk/oracle_consistency_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
