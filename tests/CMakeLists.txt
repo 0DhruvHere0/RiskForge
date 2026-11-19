@@ -32,6 +32,7 @@ add_executable(riskforge_tests
     risk/order_statistic_ci_validation_test.cpp
     risk/order_statistic_ci_test.cpp
     risk/order_statistic_ci_validation_test.cpp
+    simulation/gbm_quantile_coverage_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

@@ -42,6 +42,20 @@ target_link_libraries(
     PUBLIC
         Threads::Threads
 )
+add_executable(
+    riskforge_coverage_1000
+    tools/coverage_1000.cpp
+)
+target_compile_features(
+    riskforge_coverage_1000
+    PRIVATE
+        cxx_std_20
+)
+target_link_libraries(
+    riskforge_coverage_1000
+    PRIVATE
+        riskforge
+)
 if(
     BUILD_TESTING
     AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt"

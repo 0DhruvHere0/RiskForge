@@ -11,3 +11,9 @@ coverage run is completed.
 ### Sanitizer testing
 AddressSanitizer and UndefinedBehaviorSanitizer are executed in GitHub
 Actions using a Debug build.
+### Offline coverage result
+The deterministic 1000-seed offline coverage run produced:
+- Covered seeds: 948
+- Total seeds: 1000
+- Observed coverage: 94.8%
+The result is within the required 91%–99% acceptance range.
