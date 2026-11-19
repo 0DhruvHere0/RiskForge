@@ -8,13 +8,15 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(CTest)
 find_package(Threads REQUIRED)
-add_library(riskforge
+add_library(
+    riskforge
     src/random/philox.cpp
     src/random/uniform.cpp
     src/random/normal.cpp
-    src/Simulation/gbm.cpp
+    src/simulation/gbm.cpp
     src/simulation/monte_carlo.cpp
     src/simulation/parallel_monte_carlo.cpp
     src/risk/tail.cpp
@@ -44,4 +46,10 @@ if(
     AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt"
 )
     add_subdirectory(tests)
+endif()
+if(
+    BUILD_TESTING
+    AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/CMakeLists.txt"
+)
+    add_subdirectory(benchmarks)
 endif()
