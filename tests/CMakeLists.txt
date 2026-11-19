@@ -19,6 +19,8 @@ add_executable(riskforge_tests
     risk/oracle_consistency_test.cpp
     simulation/gbm_coverage_test.cpp
     simulation/deterministic_simulation_test.cpp
+    simulation/monte_carlo_test.cpp
+    simulation/monte_carlo_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
