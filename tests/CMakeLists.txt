@@ -24,6 +24,8 @@ add_executable(riskforge_tests
     risk/tail_accumulator_test.cpp
     risk/tail_accumulator_validation_test.cpp
     risk/monte_carlo_risk_streaming_test.cpp
+    simulation/parallel_monte_carlo_test.cpp
+    simulation/parallel_monte_carlo_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
