@@ -18,7 +18,9 @@ namespace{
     }
     TEST(ExpectedShortfallTest, RejectsInvalidConfidenceLevel){
         EXPECT_THROW(
-            lognormal_expected_shortfall(100.0, 0.05, 0.2, 1.0, 0.0),
+            static_cast<void>(
+                lognormal_expected_shortfall(100.0, 0.05, 0.2, 1.0, 0.0)
+            ),
             std::invalid_argument
         );
     }

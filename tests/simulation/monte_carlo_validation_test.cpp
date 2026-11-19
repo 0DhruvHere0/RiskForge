@@ -14,7 +14,9 @@ namespace{
             42u
         };
         EXPECT_THROW(
-            simulate_gbm_terminal_prices(config),
+            static_cast<void>(
+                simulate_gbm_terminal_prices(config)
+            ),
             std::invalid_argument
         );
     }
@@ -28,7 +30,9 @@ namespace{
             42u
         };
         EXPECT_THROW(
-            simulate_gbm_terminal_prices(config),
+            static_cast<void>(
+                simulate_gbm_terminal_prices(config)
+            ),
             std::invalid_argument
         );
     }
@@ -42,7 +46,9 @@ namespace{
             42u
         };
         EXPECT_THROW(
-            simulate_gbm_terminal_prices(config),
+            static_cast<void>(
+                simulate_gbm_terminal_prices(config)
+            ),
             std::invalid_argument
         );
     }

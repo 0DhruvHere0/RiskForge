@@ -14,10 +14,12 @@ namespace{
             42u
         };
         EXPECT_THROW(
-            estimate_gbm_risk_parallel(
-                config,
-                0.95,
-                0
+            static_cast<void>(
+                estimate_gbm_risk_parallel(
+                    config,
+                    0.95,
+                    0
+                )
             ),
             std::invalid_argument
         );
@@ -32,10 +34,12 @@ namespace{
             42u
         };
         EXPECT_THROW(
-            estimate_gbm_risk_parallel(
-                config,
-                1.0,
-                2
+            static_cast<void>(
+                estimate_gbm_risk_parallel(
+                    config,
+                    1.0,
+                    2
+                )
             ),
             std::invalid_argument
         );

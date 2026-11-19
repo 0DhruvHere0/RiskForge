@@ -14,7 +14,9 @@ namespace{
     }
     TEST(ValueAtRiskTest, RejectsInvalidConfidenceLevel){
         EXPECT_THROW(
-            lognormal_value_at_risk(100.0, 0.05, 0.2, 1.0, 1.0),
+            static_cast<void>(
+                lognormal_value_at_risk(100.0, 0.05, 0.2, 1.0, 1.0)
+            ),
             std::invalid_argument
         );
     }

@@ -14,7 +14,9 @@ namespace{
         AdaptiveTailAccumulator accumulator(3, 0.4);
         accumulator.add(10.0);
         EXPECT_THROW(
-            accumulator.finalize(),
+            static_cast<void>(
+                accumulator.finalize()
+            ),
             std::logic_error
         );
     }

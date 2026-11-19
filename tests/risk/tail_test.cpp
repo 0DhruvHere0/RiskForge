@@ -37,11 +37,15 @@ namespace{
             2.0
         };
         EXPECT_THROW(
-            aggregate_upper_tail(losses, 0.0),
+            static_cast<void>(
+                aggregate_upper_tail(losses, 0.0)
+            ),
             std::invalid_argument
         );
         EXPECT_THROW(
-            aggregate_upper_tail(losses, 1.1),
+            static_cast<void>(
+                aggregate_upper_tail(losses, 1.1)
+            ),
             std::invalid_argument
         );
     }
