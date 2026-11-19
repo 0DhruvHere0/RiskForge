@@ -1,6 +1,7 @@
 #pragma once
 #include "riskforge/risk/tail.hpp"
 #include <cstddef>
+#include <vector>
 namespace riskforge::risk{
     class AdaptiveTailAccumulator{
         public:

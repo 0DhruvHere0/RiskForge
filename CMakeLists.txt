@@ -18,6 +18,7 @@ add_library(riskforge
     src/risk/expected_shortfall.cpp
     src/simulation/monte_carlo.cpp
     src/risk/tail_accumulator.cpp
+    src/risk/monte_carlo_risk.cpp
 )
 target_compile_features(riskforge
     PUBLIC
