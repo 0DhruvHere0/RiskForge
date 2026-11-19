@@ -26,6 +26,8 @@ add_executable(riskforge_tests
     risk/monte_carlo_risk_streaming_test.cpp
     simulation/parallel_monte_carlo_test.cpp
     simulation/parallel_monte_carlo_validation_test.cpp
+    risk/parallel_monte_carlo_risk_test.cpp
+    risk/parallel_monte_carlo_risk_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
