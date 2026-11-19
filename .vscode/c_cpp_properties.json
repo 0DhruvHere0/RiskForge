@@ -4,7 +4,10 @@
             "name": "RiskForge",
             "compilerPath": "/usr/bin/clang++",
             "cppStandard": "c++20",
-            "compileCommands": "${workspaceFolder}/build/release/compile_commands.json",
+            "includePath": [
+                "${workspaceFolder}/include"
+            ],
+            "compileCommands": "${workspaceFolder}/build/debug/compile_commands.json",
             "intelliSenseMode": "macos-clang-arm64"
         }
     ],

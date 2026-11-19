@@ -25,6 +25,7 @@ add_library(
     src/risk/expected_shortfall.cpp
     src/risk/monte_carlo_risk.cpp
     src/risk/parallel_monte_carlo_risk.cpp
+    src/risk/order_statistic_ci.cpp
 )
 target_compile_features(
     riskforge

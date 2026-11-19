@@ -28,6 +28,10 @@ add_executable(riskforge_tests
     simulation/parallel_monte_carlo_validation_test.cpp
     risk/parallel_monte_carlo_risk_test.cpp
     risk/parallel_monte_carlo_risk_validation_test.cpp
+    risk/order_statistic_ci_test.cpp
+    risk/order_statistic_ci_validation_test.cpp
+    risk/order_statistic_ci_test.cpp
+    risk/order_statistic_ci_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
