@@ -21,6 +21,8 @@ add_executable(riskforge_tests
     simulation/deterministic_simulation_test.cpp
     simulation/monte_carlo_test.cpp
     simulation/monte_carlo_validation_test.cpp
+    risk/tail_accumulator_test.cpp
+    risk/tail_accumulator_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
