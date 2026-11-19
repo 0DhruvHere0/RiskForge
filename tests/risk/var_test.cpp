@@ -1,5 +1,7 @@
 #include "riskforge/risk/var.hpp"
 #include <gtest/gtest.h>
+#include <cmath>
+#include <stdexcept>
 namespace{
     using riskforge::risk::lognormal_value_at_risk;
     TEST(ValueAtRiskTest, ZeroVolatilityMatchesDeterministicLoss){
