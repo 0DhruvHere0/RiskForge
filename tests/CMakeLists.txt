@@ -33,6 +33,8 @@ add_executable(riskforge_tests
     risk/order_statistic_ci_test.cpp
     risk/order_statistic_ci_validation_test.cpp
     simulation/gbm_quantile_coverage_test.cpp
+    risk/parallel_monte_carlo_risk_stress_test.cpp
+    simulation/parallel_monte_carlo_stress_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
