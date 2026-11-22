@@ -26,6 +26,12 @@ add_library(
     src/risk/monte_carlo_risk.cpp
     src/risk/parallel_monte_carlo_risk.cpp
     src/risk/order_statistic_ci.cpp
+    src/portfolio/correlation.cpp
+    src/portfolio/correlation.cpp
+    src/portfolio/multi_asset_gbm.cpp
+    src/portfolio/correlation.cpp
+    src/portfolio/multi_asset_gbm.cpp
+    src/portfolio/portfolio.cpp
 )
 target_compile_features(
     riskforge

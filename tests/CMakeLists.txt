@@ -35,6 +35,14 @@ add_executable(riskforge_tests
     simulation/gbm_quantile_coverage_test.cpp
     risk/parallel_monte_carlo_risk_stress_test.cpp
     simulation/parallel_monte_carlo_stress_test.cpp
+    portfolio/correlation_test.cpp
+    portfolio/correlation_validation_test.cpp
+    portfolio/correlation_test.cpp
+    portfolio/correlation_validation_test.cpp
+    portfolio/multi_asset_gbm_test.cpp
+    portfolio/multi_asset_gbm_validation_test.cpp
+    portfolio/portfolio_test.cpp
+    portfolio/portfolio_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
