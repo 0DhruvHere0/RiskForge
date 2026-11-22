@@ -32,6 +32,13 @@ add_library(
     src/portfolio/correlation.cpp
     src/portfolio/multi_asset_gbm.cpp
     src/portfolio/portfolio.cpp
+    src/portfolio/portfolio.cpp
+    src/portfolio/portfolio_risk.cpp
+    src/portfolio/correlation.cpp
+    src/portfolio/multi_asset_gbm.cpp
+    src/portfolio/portfolio.cpp
+    src/portfolio/portfolio_risk.cpp
+    src/portfolio/parallel_multi_asset_gbm.cpp
 )
 target_compile_features(
     riskforge

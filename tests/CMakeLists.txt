@@ -43,6 +43,21 @@ add_executable(riskforge_tests
     portfolio/multi_asset_gbm_validation_test.cpp
     portfolio/portfolio_test.cpp
     portfolio/portfolio_validation_test.cpp
+    portfolio/portfolio_test.cpp
+    portfolio/portfolio_validation_test.cpp
+    portfolio/portfolio_risk_test.cpp
+    portfolio/portfolio_risk_validation_test.cpp
+    portfolio/multi_asset_portfolio_risk_test.cpp
+    portfolio/correlation_test.cpp
+    portfolio/correlation_validation_test.cpp
+    portfolio/multi_asset_gbm_test.cpp
+    portfolio/multi_asset_gbm_validation_test.cpp
+    portfolio/portfolio_test.cpp
+    portfolio/portfolio_validation_test.cpp
+    portfolio/portfolio_risk_test.cpp
+    portfolio/portfolio_risk_validation_test.cpp
+    portfolio/multi_asset_portfolio_risk_test.cpp
+    portfolio/parallel_multi_asset_gbm_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
