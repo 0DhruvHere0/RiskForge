@@ -66,6 +66,22 @@ add_executable(riskforge_tests
     portfolio/portfolio_engine_test.cpp
     portfolio/portfolio_engine_validation_test.cpp
     portfolio/portfolio_engine_stress_test.cpp
+    options/black_scholes_test.cpp
+    options/black_scholes_validation_test.cpp
+    options/black_scholes_put_test.cpp
+    options/black_scholes_put_validation_test.cpp
+    options/black_scholes_test.cpp
+    options/black_scholes_validation_test.cpp
+    options/black_scholes_put_test.cpp
+    options/black_scholes_put_validation_test.cpp
+    options/greeks_test.cpp
+    options/greeks_validation_test.cpp
+    options/put_greeks_test.cpp
+    options/put_greeks_validation_test.cpp
+    options/implied_volatility_test.cpp
+    options/implied_volatility_validation_test.cpp
+    options/monte_carlo_options_test.cpp
+    options/monte_carlo_options_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

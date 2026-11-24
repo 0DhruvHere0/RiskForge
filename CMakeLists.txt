@@ -42,6 +42,14 @@ add_library(
     src/portfolio/parallel_multi_asset_gbm.cpp
     src/portfolio/parallel_portfolio_risk.cpp
     src/portfolio/portfolio_engine.cpp
+    src/options/black_scholes.cpp
+    src/options/black_scholes_put.cpp
+    src/options/black_scholes.cpp
+    src/options/black_scholes_put.cpp
+    src/options/greeks.cpp
+    src/options/put_greeks.cpp
+    src/options/implied_volatility.cpp
+    src/options/monte_carlo_options.cpp
 )
 target_compile_features(
     riskforge
