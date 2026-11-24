@@ -63,6 +63,9 @@ add_executable(riskforge_tests
     portfolio/parallel_portfolio_risk_validation_test.cpp
     portfolio/parallel_portfolio_risk_determinism_test.cpp
     portfolio/parallel_portfolio_risk_stress_test.cpp
+    portfolio/portfolio_engine_test.cpp
+    portfolio/portfolio_engine_validation_test.cpp
+    portfolio/portfolio_engine_stress_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
