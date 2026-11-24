@@ -54,6 +54,7 @@ add_library(
     src/options/volatility_surface.cpp
     src/random/student_t.cpp
     src/simulation/student_t_gbm.cpp
+    src/simulation/stochastic_volatility.cpp
 )
 target_compile_features(
     riskforge
