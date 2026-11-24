@@ -35,3 +35,18 @@ target_link_libraries(
         riskforge
         benchmark::benchmark
 )
+add_executable(
+    riskforge_backtesting_benchmark
+    backtesting_benchmark.cpp
+)
+target_compile_features(
+    riskforge_backtesting_benchmark
+    PRIVATE
+        cxx_std_20
+)
+target_link_libraries(
+    riskforge_backtesting_benchmark
+    PRIVATE
+        riskforge
+        benchmark::benchmark
+)
