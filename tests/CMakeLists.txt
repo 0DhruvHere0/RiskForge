@@ -123,6 +123,14 @@ add_executable(riskforge_tests
     backtesting/stress_scenario_validation_test.cpp
     backtesting/stress_risk_test.cpp
     backtesting/stress_risk_validation_test.cpp
+    backtesting/performance_metrics_test.cpp
+    backtesting/performance_metrics_validation_test.cpp
+    backtesting/stress_grid_test.cpp
+    backtesting/stress_grid_validation_test.cpp
+    backtesting/report_csv_test.cpp
+    backtesting/report_csv_validation_test.cpp
+    backtesting/rolling_backtest_test.cpp
+    backtesting/rolling_backtest_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

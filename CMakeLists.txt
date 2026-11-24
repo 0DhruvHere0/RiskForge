@@ -70,6 +70,10 @@ add_library(
     src/backtesting/conditional_coverage.cpp
     src/backtesting/stress_scenario.cpp
     src/backtesting/stress_risk.cpp
+    src/backtesting/performance_metrics.cpp
+    src/backtesting/stress_grid.cpp
+    src/backtesting/report_csv.cpp
+    src/backtesting/rolling_backtest.cpp
 )
 target_compile_features(
     riskforge
