@@ -61,6 +61,9 @@ add_library(
     src/backtesting/historical_risk.cpp
     src/backtesting/var_backtest.cpp
     src/backtesting/rolling_historical_risk.cpp
+    src/backtesting/historical_volatility.cpp
+    src/backtesting/drawdown.cpp
+    src/backtesting/sharpe_ratio.cpp
 )
 target_compile_features(
     riskforge

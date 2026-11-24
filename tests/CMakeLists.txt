@@ -105,6 +105,12 @@ add_executable(riskforge_tests
     backtesting/var_backtest_validation_test.cpp
     backtesting/rolling_historical_risk_test.cpp
     backtesting/rolling_historical_risk_validation_test.cpp
+    backtesting/historical_volatility_test.cpp
+    backtesting/historical_volatility_validation_test.cpp
+    backtesting/drawdown_test.cpp
+    backtesting/drawdown_validation_test.cpp
+    backtesting/sharpe_ratio_test.cpp
+    backtesting/sharpe_ratio_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
