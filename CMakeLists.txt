@@ -50,6 +50,7 @@ add_library(
     src/options/put_greeks.cpp
     src/options/implied_volatility.cpp
     src/options/monte_carlo_options.cpp
+    src/options/monte_carlo_greeks.cpp
 )
 target_compile_features(
     riskforge

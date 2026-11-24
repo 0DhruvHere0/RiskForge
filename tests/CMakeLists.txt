@@ -82,6 +82,8 @@ add_executable(riskforge_tests
     options/implied_volatility_validation_test.cpp
     options/monte_carlo_options_test.cpp
     options/monte_carlo_options_validation_test.cpp
+    options/monte_carlo_greeks_test.cpp
+    options/monte_carlo_greeks_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
