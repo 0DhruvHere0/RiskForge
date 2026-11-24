@@ -111,6 +111,18 @@ add_executable(riskforge_tests
     backtesting/drawdown_validation_test.cpp
     backtesting/sharpe_ratio_test.cpp
     backtesting/sharpe_ratio_validation_test.cpp
+    backtesting/backtest_report_test.cpp
+    backtesting/backtest_report_validation_test.cpp
+    backtesting/unconditional_coverage_test.cpp
+    backtesting/unconditional_coverage_validation_test.cpp
+    backtesting/gbm_calibration_test.cpp
+    backtesting/gbm_calibration_validation_test.cpp
+    backtesting/conditional_coverage_test.cpp
+    backtesting/conditional_coverage_validation_test.cpp
+    backtesting/stress_scenario_test.cpp
+    backtesting/stress_scenario_validation_test.cpp
+    backtesting/stress_risk_test.cpp
+    backtesting/stress_risk_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

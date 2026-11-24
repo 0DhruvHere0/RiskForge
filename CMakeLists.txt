@@ -64,6 +64,12 @@ add_library(
     src/backtesting/historical_volatility.cpp
     src/backtesting/drawdown.cpp
     src/backtesting/sharpe_ratio.cpp
+    src/backtesting/backtest_report.cpp
+    src/backtesting/unconditional_coverage.cpp
+    src/backtesting/gbm_calibration.cpp
+    src/backtesting/conditional_coverage.cpp
+    src/backtesting/stress_scenario.cpp
+    src/backtesting/stress_risk.cpp
 )
 target_compile_features(
     riskforge
