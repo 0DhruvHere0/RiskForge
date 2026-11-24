@@ -74,6 +74,7 @@ add_library(
     src/backtesting/stress_grid.cpp
     src/backtesting/report_csv.cpp
     src/backtesting/rolling_backtest.cpp
+    src/backtesting/risk_comparison.cpp
 )
 target_compile_features(
     riskforge

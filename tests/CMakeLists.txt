@@ -131,6 +131,8 @@ add_executable(riskforge_tests
     backtesting/report_csv_validation_test.cpp
     backtesting/rolling_backtest_test.cpp
     backtesting/rolling_backtest_validation_test.cpp
+    backtesting/risk_comparison_test.cpp
+    backtesting/risk_comparison_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
