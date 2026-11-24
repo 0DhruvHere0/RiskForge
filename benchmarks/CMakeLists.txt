@@ -20,3 +20,18 @@ target_link_libraries(
         riskforge
         benchmark::benchmark
 )
+add_executable(
+    riskforge_advanced_models_benchmark
+    advanced_models_benchmark.cpp
+)
+target_compile_features(
+    riskforge_advanced_models_benchmark
+    PRIVATE
+        cxx_std_20
+)
+target_link_libraries(
+    riskforge_advanced_models_benchmark
+    PRIVATE
+        riskforge
+        benchmark::benchmark
+)
