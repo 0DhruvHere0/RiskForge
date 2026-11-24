@@ -94,6 +94,8 @@ add_executable(riskforge_tests
     simulation/stochastic_volatility_validation_test.cpp
     simulation/parallel_stochastic_volatility_test.cpp
     simulation/parallel_stochastic_volatility_validation_test.cpp
+    simulation/jump_diffusion_test.cpp
+    simulation/jump_diffusion_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

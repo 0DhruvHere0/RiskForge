@@ -56,6 +56,7 @@ add_library(
     src/simulation/student_t_gbm.cpp
     src/simulation/stochastic_volatility.cpp
     src/simulation/parallel_stochastic_volatility.cpp
+    src/simulation/jump_diffusion.cpp
 )
 target_compile_features(
     riskforge

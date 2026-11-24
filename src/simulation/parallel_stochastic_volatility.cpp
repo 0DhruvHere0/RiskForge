@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <thread>
 #include <vector>
+#include <algorithm>
 namespace riskforge::simulation{
     std::vector<double> parallel_stochastic_volatility_terminal_prices(
         double initial_price,
