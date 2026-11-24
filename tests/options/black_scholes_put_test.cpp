@@ -1,5 +1,6 @@
 #include "riskforge/options/black_scholes_put.hpp"
 #include <gtest/gtest.h>
+#include <cmath>
 namespace{
     using riskforge::options::BlackScholesInput;
     using riskforge::options::black_scholes_put_delta;

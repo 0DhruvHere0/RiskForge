@@ -92,6 +92,8 @@ add_executable(riskforge_tests
     simulation/student_t_gbm_validation_test.cpp
     simulation/stochastic_volatility_test.cpp
     simulation/stochastic_volatility_validation_test.cpp
+    simulation/parallel_stochastic_volatility_test.cpp
+    simulation/parallel_stochastic_volatility_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
