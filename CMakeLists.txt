@@ -53,6 +53,7 @@ add_library(
     src/options/monte_carlo_greeks.cpp
     src/options/volatility_surface.cpp
     src/random/student_t.cpp
+    src/simulation/student_t_gbm.cpp
 )
 target_compile_features(
     riskforge

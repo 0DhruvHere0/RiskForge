@@ -88,6 +88,8 @@ add_executable(riskforge_tests
     options/volatility_surface_validation_test.cpp
     random/student_t_test.cpp
     random/student_t_validation_test.cpp
+    simulation/student_t_gbm_test.cpp
+    simulation/student_t_gbm_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
