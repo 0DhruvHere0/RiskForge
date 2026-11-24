@@ -57,6 +57,10 @@ add_library(
     src/simulation/stochastic_volatility.cpp
     src/simulation/parallel_stochastic_volatility.cpp
     src/simulation/jump_diffusion.cpp
+    src/backtesting/historical_returns.cpp
+    src/backtesting/historical_risk.cpp
+    src/backtesting/var_backtest.cpp
+    src/backtesting/rolling_historical_risk.cpp
 )
 target_compile_features(
     riskforge

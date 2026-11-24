@@ -98,6 +98,13 @@ add_executable(riskforge_tests
     simulation/jump_diffusion_validation_test.cpp
     simulation/advanced_model_consistency_test.cpp
     simulation/advanced_model_validation_test.cpp
+    backtesting/historical_returns_test.cpp
+    backtesting/historical_risk_test.cpp
+    backtesting/historical_risk_validation_test.cpp
+    backtesting/var_backtest_test.cpp
+    backtesting/var_backtest_validation_test.cpp
+    backtesting/rolling_historical_risk_test.cpp
+    backtesting/rolling_historical_risk_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 
