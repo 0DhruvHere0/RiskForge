@@ -84,6 +84,10 @@ add_executable(riskforge_tests
     options/monte_carlo_options_validation_test.cpp
     options/monte_carlo_greeks_test.cpp
     options/monte_carlo_greeks_validation_test.cpp
+    options/volatility_surface_test.cpp
+    options/volatility_surface_validation_test.cpp
+    random/student_t_test.cpp
+    random/student_t_validation_test.cpp
 )
 target_compile_features(riskforge_tests 
     PRIVATE 

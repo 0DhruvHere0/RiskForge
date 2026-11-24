@@ -51,6 +51,8 @@ add_library(
     src/options/implied_volatility.cpp
     src/options/monte_carlo_options.cpp
     src/options/monte_carlo_greeks.cpp
+    src/options/volatility_surface.cpp
+    src/random/student_t.cpp
 )
 target_compile_features(
     riskforge
