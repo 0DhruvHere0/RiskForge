@@ -161,3 +161,55 @@ silently producing undefined or non-finite results.
 ### Scope control
 Implementation discoveries that differ from the original design are recorded
 in this document and do not automatically block development.
+---
+## Phase 5
+### Historical returns
+Historical log returns are calculated from consecutive positive, finite prices.
+At least two price observations are required.
+### Historical risk
+Historical Value at Risk and Expected Shortfall are calculated from sorted
+historical losses.
+Expected Shortfall includes observations at or beyond the Value at Risk
+threshold.
+### Rolling risk
+Rolling historical risk uses fixed-size windows over the return series.
+Windows smaller than two observations or larger than the available input are
+rejected.
+### Historical volatility
+Historical volatility uses sample variance and is annualized using the supplied
+number of periods per year.
+### Performance metrics
+The backtesting layer calculates:
+- Total log return
+- Total compounded return
+- Annualized return
+- Annualized volatility
+- Maximum drawdown
+- Annualized Sharpe ratio
+### VaR backtesting
+VaR backtesting counts observations whose realized loss exceeds the VaR
+threshold.
+An observation equal to the VaR threshold is not counted as an exception.
+### Coverage testing
+Unconditional coverage uses the likelihood-ratio test for the observed
+exception rate.
+Conditional coverage additionally tests whether exceptions are independent
+over time.
+### Stress testing
+Stress scenarios apply additive shocks to historical log returns.
+Stress grids evaluate multiple shocks and produce historical risk estimates for
+each scenario.
+### Calibration
+GBM drift and volatility are calibrated from historical log returns.
+The volatility estimate uses sample variance. The drift estimate adjusts the
+annualized mean log return by half the annualized variance.
+### Risk comparison
+Historical and simulated risk estimates can be compared through their Value at
+Risk and Expected Shortfall differences.
+### Reporting
+Backtest reports can be serialized to CSV for downstream analysis and
+presentation.
+### Phase 5 verification
+The complete debug suite passed with:
+```text
+245/245 tests passed
