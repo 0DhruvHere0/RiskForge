@@ -10,15 +10,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(CTest)
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 find_package(Threads REQUIRED)
 add_library(
     riskforge
     src/random/philox.cpp
     src/random/uniform.cpp
     src/random/normal.cpp
+    src/random/student_t.cpp
     src/simulation/gbm.cpp
     src/simulation/monte_carlo.cpp
     src/simulation/parallel_monte_carlo.cpp
+    src/simulation/student_t_gbm.cpp
+    src/simulation/stochastic_volatility.cpp
+    src/simulation/parallel_stochastic_volatility.cpp
+    src/simulation/jump_diffusion.cpp
     src/risk/tail.cpp
     src/risk/tail_accumulator.cpp
     src/risk/var.cpp
@@ -27,36 +34,20 @@ add_library(
     src/risk/parallel_monte_carlo_risk.cpp
     src/risk/order_statistic_ci.cpp
     src/portfolio/correlation.cpp
-    src/portfolio/correlation.cpp
     src/portfolio/multi_asset_gbm.cpp
-    src/portfolio/correlation.cpp
-    src/portfolio/multi_asset_gbm.cpp
-    src/portfolio/portfolio.cpp
+    src/portfolio/parallel_multi_asset_gbm.cpp
     src/portfolio/portfolio.cpp
     src/portfolio/portfolio_risk.cpp
-    src/portfolio/correlation.cpp
-    src/portfolio/multi_asset_gbm.cpp
-    src/portfolio/portfolio.cpp
-    src/portfolio/portfolio_risk.cpp
-    src/portfolio/parallel_multi_asset_gbm.cpp
-    src/portfolio/parallel_multi_asset_gbm.cpp
     src/portfolio/parallel_portfolio_risk.cpp
     src/portfolio/portfolio_engine.cpp
-    src/options/black_scholes.cpp
-    src/options/black_scholes_put.cpp
     src/options/black_scholes.cpp
     src/options/black_scholes_put.cpp
     src/options/greeks.cpp
     src/options/put_greeks.cpp
     src/options/implied_volatility.cpp
+    src/options/volatility_surface.cpp
     src/options/monte_carlo_options.cpp
     src/options/monte_carlo_greeks.cpp
-    src/options/volatility_surface.cpp
-    src/random/student_t.cpp
-    src/simulation/student_t_gbm.cpp
-    src/simulation/stochastic_volatility.cpp
-    src/simulation/parallel_stochastic_volatility.cpp
-    src/simulation/jump_diffusion.cpp
     src/backtesting/historical_returns.cpp
     src/backtesting/historical_risk.cpp
     src/backtesting/var_backtest.cpp
@@ -66,15 +57,16 @@ add_library(
     src/backtesting/sharpe_ratio.cpp
     src/backtesting/backtest_report.cpp
     src/backtesting/unconditional_coverage.cpp
-    src/backtesting/gbm_calibration.cpp
     src/backtesting/conditional_coverage.cpp
+    src/backtesting/gbm_calibration.cpp
     src/backtesting/stress_scenario.cpp
     src/backtesting/stress_risk.cpp
-    src/backtesting/performance_metrics.cpp
     src/backtesting/stress_grid.cpp
+    src/backtesting/performance_metrics.cpp
     src/backtesting/report_csv.cpp
     src/backtesting/rolling_backtest.cpp
     src/backtesting/risk_comparison.cpp
+    src/version.cpp
 )
 target_compile_features(
     riskforge
@@ -84,7 +76,8 @@ target_compile_features(
 target_include_directories(
     riskforge
     PUBLIC
-        "${CMAKE_CURRENT_SOURCE_DIR}/include"
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 target_link_libraries(
     riskforge
@@ -104,6 +97,54 @@ target_link_libraries(
     riskforge_coverage_1000
     PRIVATE
         riskforge
+)
+install(
+    TARGETS
+        riskforge
+    EXPORT
+        RiskForgeTargets
+    ARCHIVE DESTINATION
+        ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION
+        ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION
+        ${CMAKE_INSTALL_BINDIR}
+)
+install(
+    DIRECTORY
+        include/
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}
+)
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/RiskForgeConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/RiskForgeConfig.cmake"
+    INSTALL_DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/RiskForge"
+)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/RiskForgeConfigVersion.cmake"
+    VERSION
+        ${PROJECT_VERSION}
+    COMPATIBILITY
+        SameMajorVersion
+)
+install(
+    EXPORT
+        RiskForgeTargets
+    FILE
+        RiskForgeTargets.cmake
+    NAMESPACE
+        RiskForge::
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/RiskForge"
+)
+install(
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/RiskForgeConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/RiskForgeConfigVersion.cmake"
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/RiskForge"
 )
 if(
     BUILD_TESTING
