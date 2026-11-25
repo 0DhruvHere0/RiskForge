@@ -4,15 +4,19 @@ on:
     branches:
       - main
   pull_request:
+permissions:
+  contents: read
 jobs:
   address-and-undefined:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Configure
         run: >
           cmake
+          --fresh
           -S .
           -B build/sanitizers
           -DCMAKE_BUILD_TYPE=Debug
@@ -20,6 +24,6 @@ jobs:
           -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer"
           -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
       - name: Build
-        run: cmake --build build/sanitizers --parallel
+        run: cmake --build build/sanitizers --parallel 2
       - name: Test
-        run: ctest --test-dir build/sanitizers --output-on-failure
+        run: ctest --test-dir build/sanitizers --output-on-failure --parallel 2
