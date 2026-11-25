@@ -1,4 +1,6 @@
 from ._native import version
-__all__ = [
+from .simulation import gbm_terminal_price
+__all__=[
     "version",
+    "gbm_terminal_price",
 ]
