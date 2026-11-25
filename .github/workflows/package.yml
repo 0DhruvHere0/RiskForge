@@ -1,0 +1,31 @@
+name: Package Verification
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  package-consumer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Release
+        run: cmake --fresh --preset release
+      - name: Build Release
+        run: cmake --build --preset release --parallel
+      - name: Run Tests
+        run: ctest --preset release --output-on-failure
+      - name: Install Package
+        run: cmake --install build/release --prefix build/install
+      - name: Configure External Consumer
+        run: >
+          cmake
+          -S tests/package_consumer
+          -B build/package_consumer
+          -DCMAKE_PREFIX_PATH=${{ github.workspace }}/build/install
+          -DCMAKE_BUILD_TYPE=Release
+      - name: Build External Consumer
+        run: cmake --build build/package_consumer --parallel
+      - name: Run External Consumer
+        run: ./build/package_consumer/riskforge_package_consumer
