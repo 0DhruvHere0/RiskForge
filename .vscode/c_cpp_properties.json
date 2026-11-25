@@ -7,7 +7,7 @@
             "includePath": [
                 "${workspaceFolder}/include"
             ],
-            "compileCommands": "${workspaceFolder}/build/debug/compile_commands.json",
+            "compileCommands": "${workspaceFolder}/analytics/build/compile_commands.json",
             "intelliSenseMode": "macos-clang-arm64"
         }
     ],

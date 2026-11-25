@@ -1,0 +1,18 @@
+[build-system]
+requires = [
+    "scikit-build-core>=0.10",
+    "pybind11>=2.12"
+]
+build-backend = "scikit_build_core.build"
+[project]
+name = "riskforge-analytics"
+version = "0.1.0"
+description = "Python interface for the RiskForge C++ engine"
+requires-python = ">=3.10"
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0"
+]
+[tool.scikit-build]
+cmake.source-dir = "."
+wheel.packages = ["riskforge"]
