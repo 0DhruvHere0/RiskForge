@@ -14,6 +14,7 @@ from .cached_provider import CachedInstrumentProvider
 from .json_provider import JsonMarketDataProvider
 from .market_data_client import MarketDataClient
 from .http_client import UrllibJsonClient
+from .alpha_vantage_provider import AlphaVantageProvider
 __all__=[
     "HistoricalPriceSeries",
     "load_price_history_csv",

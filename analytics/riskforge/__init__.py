@@ -45,6 +45,9 @@ from .data import CachedInstrumentProvider
 from .data import JsonMarketDataProvider
 from .data import MarketDataClient
 from .data import UrllibJsonClient
+from .config import MarketDataConfig
+from .config import load_market_data_config
+from .data import AlphaVantageProvider
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -91,4 +94,7 @@ __all__=[
     "JsonMarketDataProvider",
     "MarketDataClient",
     "UrllibJsonClient",
+    "MarketDataConfig",
+    "load_market_data_config",
+    "AlphaVantageProvider",
 ]
