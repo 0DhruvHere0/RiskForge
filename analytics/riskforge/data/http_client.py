@@ -40,3 +40,21 @@ class UrllibJsonClient:
             raise RuntimeError(
                 "market-data request failed"
             ) from error
+class UrllibTextClient:
+    def __init__(self, timeout: float=10.0):
+        self._timeout=timeout
+    def get_text(self, url: str) -> str:
+        request=Request(
+            url,
+            method="GET"
+        )
+        try:
+            with urlopen(
+                request,
+                timeout=self._timeout
+            ) as response:
+                return response.read().decode("utf-8")
+        except (HTTPError, URLError, TimeoutError) as error:
+            raise RuntimeError(
+                "text request failed"
+            ) from error

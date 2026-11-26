@@ -48,6 +48,8 @@ from .data import UrllibJsonClient
 from .config import MarketDataConfig
 from .config import load_market_data_config
 from .data import AlphaVantageProvider
+from .data import AmfiProvider
+from .data import UrllibTextClient
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -97,4 +99,6 @@ __all__=[
     "MarketDataConfig",
     "load_market_data_config",
     "AlphaVantageProvider",
+    "AmfiProvider",
+    "UrllibTextClient",
 ]
