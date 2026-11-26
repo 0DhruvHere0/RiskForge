@@ -44,6 +44,7 @@ from .data import CsvMarketDataProvider
 from .data import CachedInstrumentProvider
 from .data import JsonMarketDataProvider
 from .data import MarketDataClient
+from .data import UrllibJsonClient
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -89,4 +90,5 @@ __all__=[
     "CachedInstrumentProvider",
     "JsonMarketDataProvider",
     "MarketDataClient",
+    "UrllibJsonClient",
 ]

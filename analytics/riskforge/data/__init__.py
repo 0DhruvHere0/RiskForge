@@ -13,6 +13,7 @@ from .csv_market_provider import CsvMarketDataProvider
 from .cached_provider import CachedInstrumentProvider
 from .json_provider import JsonMarketDataProvider
 from .market_data_client import MarketDataClient
+from .http_client import UrllibJsonClient
 __all__=[
     "HistoricalPriceSeries",
     "load_price_history_csv",
