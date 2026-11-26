@@ -10,6 +10,7 @@ from .portfolio_input import PortfolioRequest
 from .portfolio_validation import validate_portfolio_request
 from .analysis import analyze_portfolio_holdings
 from .csv_market_provider import CsvMarketDataProvider
+from .cached_provider import CachedInstrumentProvider
 __all__=[
     "HistoricalPriceSeries",
     "load_price_history_csv",

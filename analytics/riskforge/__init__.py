@@ -41,6 +41,7 @@ from .data import estimate_series_historical_risk
 from .data import price_series_to_log_returns
 from .data import analyze_portfolio_holdings
 from .data import CsvMarketDataProvider
+from .data import CachedInstrumentProvider
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -83,4 +84,5 @@ __all__=[
     "estimate_series_historical_risk",
     "analyze_portfolio_holdings",
     "CsvMarketDataProvider",
+    "CachedInstrumentProvider",
 ]
