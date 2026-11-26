@@ -39,6 +39,7 @@ from .data import HistoricalPriceSeries
 from .data import load_price_history_csv
 from .data import estimate_series_historical_risk
 from .data import price_series_to_log_returns
+from .data import analyze_portfolio_holdings
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -79,4 +80,5 @@ __all__=[
     "monte_carlo_call_vega",
     "price_series_to_log_returns",
     "estimate_series_historical_risk",
+    "analyze_portfolio_holdings",
 ]
