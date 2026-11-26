@@ -42,6 +42,8 @@ from .data import price_series_to_log_returns
 from .data import analyze_portfolio_holdings
 from .data import CsvMarketDataProvider
 from .data import CachedInstrumentProvider
+from .data import JsonMarketDataProvider
+from .data import MarketDataClient
 __all__=[
     "version",
     "gbm_terminal_price",
@@ -85,4 +87,6 @@ __all__=[
     "analyze_portfolio_holdings",
     "CsvMarketDataProvider",
     "CachedInstrumentProvider",
+    "JsonMarketDataProvider",
+    "MarketDataClient",
 ]
