@@ -53,6 +53,8 @@ from .data import UrllibTextClient
 from .portfolio_forecast import ForecastHolding
 from .portfolio_forecast import PortfolioForecast
 from .portfolio_forecast import PortfolioForecaster
+from .portfolio_forecast_analysis import PortfolioForecastSummary
+from .portfolio_forecast_analysis import summarize_portfolio_forecast
 __all__=[
     "version",
     "gbm_terminal_price",
