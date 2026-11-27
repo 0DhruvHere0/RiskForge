@@ -10,6 +10,8 @@ from .portfolio_forecast import ForecastHolding
 from .portfolio_service import PortfolioAnalysisService
 from .security import allowed_origins
 from .security import require_api_key
+from .api_errors import runtime_error_handler
+from .api_errors import value_error_handler
 class HoldingRequest(BaseModel):
     symbol: str
     quantity: float
@@ -43,6 +45,14 @@ def create_app(
         docs_url=None if production else "/docs",
         redoc_url=None if production else "/redoc",
         openapi_url=None if production else "/openapi.json"
+    )
+    app.add_exception_handler(
+        ValueError,
+        value_error_handler
+    )
+    app.add_exception_handler(
+        RuntimeError,
+        runtime_error_handler
     )
     app.add_middleware(
         CORSMiddleware,
