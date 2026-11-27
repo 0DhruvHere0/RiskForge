@@ -15,6 +15,8 @@ from .api_errors import value_error_handler
 from pydantic import BaseModel
 from pydantic import Field
 from pydantic import model_validator
+from .observability import RequestIdMiddleware
+from .observability import configure_logging
 class HoldingRequest(BaseModel):
     symbol: str
     quantity: float= Field(gt=0.0)
@@ -54,6 +56,8 @@ def create_app(
         redoc_url=None if production else "/redoc",
         openapi_url=None if production else "/openapi.json"
     )
+    configure_logging()
+    app.add_middleware(RequestIdMiddleware)
     app.add_exception_handler(
         ValueError,
         value_error_handler
