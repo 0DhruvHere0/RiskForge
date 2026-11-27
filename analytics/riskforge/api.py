@@ -35,6 +35,19 @@ def create_app(
     @app.get("/health")
     def health():
         return {"status": "ok"}
+    @app.get("/instruments/search")
+    def search_instruments(query: str):
+        instruments=data_service.search(query)
+        return [
+            {
+                "symbol": instrument.symbol,
+                "name": instrument.name,
+                "instrument_type": instrument.instrument_type,
+                "exchange": instrument.exchange,
+                "currency": instrument.currency
+            }
+            for instrument in instruments
+        ]
     @app.post(
         "/portfolio/forecast",
         response_model=PortfolioForecastResponse
