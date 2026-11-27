@@ -12,20 +12,28 @@ from .security import allowed_origins
 from .security import require_api_key
 from .api_errors import runtime_error_handler
 from .api_errors import value_error_handler
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import model_validator
 class HoldingRequest(BaseModel):
     symbol: str
-    quantity: float
-    purchase_price: float
-    current_price: float
+    quantity: float= Field(gt=0.0)
+    purchase_price: float= Field(gt= 0.0)
+    current_price: float= Field(gt= 0.0)
     drift: float
-    volatility: float
+    volatility: float= Field(gt =0.0)
 class PortfolioForecastRequest(BaseModel):
-    holdings: list[HoldingRequest]
+    holdings: list[HoldingRequest]= Field(min_length=1)
     start: date
     end: date
-    horizon: float
-    path_count: int
+    horizon: float= Field(gt= 0.0)
+    path_count: int= Field(gt= 0.0)
     seed: int
+    @model_validator(mode="after")
+    def validate_dates(self):
+        if self.start>self.end:
+            raise ValueError("start must not be after end")
+        return self
 class PortfolioForecastResponse(BaseModel):
     expected_value: float
     lower_value: float
