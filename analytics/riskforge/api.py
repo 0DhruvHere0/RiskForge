@@ -1,11 +1,15 @@
 import os
 from datetime import date
+from fastapi import Depends
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from .data.portfolio_data import PortfolioDataService
 from .data.portfolio_data import PortfolioHolding
 from .portfolio_forecast import ForecastHolding
 from .portfolio_service import PortfolioAnalysisService
+from .security import allowed_origins
+from .security import require_api_key
 class HoldingRequest(BaseModel):
     symbol: str
     quantity: float
@@ -40,10 +44,20 @@ def create_app(
         redoc_url=None if production else "/redoc",
         openapi_url=None if production else "/openapi.json"
     )
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins(),
+        allow_credentials=True,
+        allow_methods=["GET", "POST"],
+        allow_headers=["*"]
+    )
     @app.get("/health")
     def health():
         return {"status": "ok"}
-    @app.get("/instruments/search")
+    @app.get(
+        "/instruments/search",
+        dependencies=[Depends(require_api_key)]
+    )
     def search_instruments(query: str):
         instruments=data_service.search(query)
         return [
@@ -58,7 +72,8 @@ def create_app(
         ]
     @app.post(
         "/portfolio/forecast",
-        response_model=PortfolioForecastResponse
+        response_model=PortfolioForecastResponse,
+        dependencies=[Depends(require_api_key)]
     )
     def portfolio_forecast(request: PortfolioForecastRequest):
         holdings=[
