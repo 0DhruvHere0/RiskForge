@@ -50,6 +50,9 @@ from .config import load_market_data_config
 from .data import AlphaVantageProvider
 from .data import AmfiProvider
 from .data import UrllibTextClient
+from .portfolio_forecast import ForecastHolding
+from .portfolio_forecast import PortfolioForecast
+from .portfolio_forecast import PortfolioForecaster
 __all__=[
     "version",
     "gbm_terminal_price",
