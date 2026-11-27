@@ -1,3 +1,4 @@
+import os
 from datetime import date
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -28,9 +29,16 @@ def create_app(
     data_service: PortfolioDataService,
     analysis_service: PortfolioAnalysisService
 ):
+    production=os.getenv(
+        "RISKFORGE_ENV",
+        "development"
+    ).lower()=="production"
     app=FastAPI(
         title="RiskForge Analytics",
-        version="0.1.0"
+        version="0.1.0",
+        docs_url=None if production else "/docs",
+        redoc_url=None if production else "/redoc",
+        openapi_url=None if production else "/openapi.json"
     )
     @app.get("/health")
     def health():
