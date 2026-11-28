@@ -3,6 +3,7 @@ use crate::models::{
     PortfolioForecastResponse,
 };
 use reqwest::Client;
+#[derive(Clone)]
 pub struct AnalyticsClient {
     client: Client,
     base_url: String,

@@ -1,4 +1,5 @@
 from datetime import date
+import numpy as np
 from .http_client import UrllibJsonClient
 from .instruments import Instrument
 from .models import HistoricalPriceSeries
@@ -24,13 +25,19 @@ class AlphaVantageProvider:
             {
                 "function": "SYMBOL_SEARCH",
                 "keywords": query,
-                "apikey": self._api_key,
+                "apikey": self._api_key
             }
         )
         self._check_response(payload)
         instruments=[]
-        for item in payload.get("bestMatches", []):
-            item_type=item.get("3. type", "stock").lower()
+        for item in payload.get(
+            "bestMatches",
+            []
+        ):
+            item_type=item.get(
+                "3. type",
+                "stock"
+            ).lower()
             if instrument_type and item_type!=instrument_type:
                 continue
             instruments.append(
@@ -54,19 +61,23 @@ class AlphaVantageProvider:
             {
                 "function": "TIME_SERIES_DAILY",
                 "symbol": instrument.symbol,
-                "outputsize": "full",
-                "apikey": self._api_key,
+                "outputsize": "compact",
+                "apikey": self._api_key
             }
         )
         self._check_response(payload)
-        series=payload.get("Time Series (Daily)")
+        series=payload.get(
+            "Time Series (Daily)"
+        )
         if series is None:
             raise RuntimeError(
                 "Alpha Vantage response did not contain daily prices"
             )
         rows=[]
         for date_text, values in series.items():
-            current_date=date.fromisoformat(date_text)
+            current_date=date.fromisoformat(
+                date_text
+            )
             if start and current_date<start:
                 continue
             if end and current_date>end:
@@ -77,13 +88,17 @@ class AlphaVantageProvider:
                     float(values["4. close"])
                 )
             )
-        rows.sort(key=lambda row: row[0])
+        rows.sort(
+            key=lambda row: row[0]
+        )
         if not rows:
-            raise ValueError("no historical prices found")
+            raise ValueError(
+                "no historical prices found"
+            )
         return HistoricalPriceSeries(
             instrument.symbol,
             [row[0] for row in rows],
-            __import__("numpy").asarray(
+            np.asarray(
                 [row[1] for row in rows],
                 dtype=float
             )
@@ -91,6 +106,14 @@ class AlphaVantageProvider:
     @staticmethod
     def _check_response(payload):
         if "Error Message" in payload:
-            raise RuntimeError(payload["Error Message"])
+            raise RuntimeError(
+                payload["Error Message"]
+            )
+        if "Information" in payload:
+            raise RuntimeError(
+                payload["Information"]
+            )
         if "Note" in payload:
-            raise RuntimeError(payload["Note"])
+            raise RuntimeError(
+                payload["Note"]
+            )

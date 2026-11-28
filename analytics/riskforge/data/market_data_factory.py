@@ -4,6 +4,7 @@ from .amfi_provider import AmfiProvider
 from .combined_provider import CombinedMarketDataProvider
 from .http_client import UrllibJsonClient
 from .http_client import UrllibTextClient
+from .mfapi_provider import MfapiProvider
 from .provider import InstrumentProvider
 @dataclass(frozen=True)
 class MarketDataFactoryConfig:
@@ -16,7 +17,9 @@ def create_market_data_provider(
     normalized_source=source.strip().lower()
     if normalized_source=="alpha_vantage":
         if not config.alphavantage_api_key:
-            raise ValueError("Alpha Vantage API key is required")
+            raise ValueError(
+                "Alpha Vantage API key is required"
+            )
         client=UrllibJsonClient(
             "https://www.alphavantage.co",
             timeout=config.request_timeout
@@ -34,12 +37,18 @@ def create_market_data_provider(
         )
     if normalized_source=="combined":
         if not config.alphavantage_api_key:
-            raise ValueError("Alpha Vantage API key is required")
+            raise ValueError(
+                "Alpha Vantage API key is required"
+            )
         stock_client=UrllibJsonClient(
             "https://www.alphavantage.co",
             timeout=config.request_timeout
         )
-        text_client=UrllibTextClient(
+        amfi_client=UrllibTextClient(
+            timeout=config.request_timeout
+        )
+        mfapi_client=UrllibJsonClient(
+            "https://api.mfapi.in",
             timeout=config.request_timeout
         )
         stock_provider=AlphaVantageProvider(
@@ -47,11 +56,15 @@ def create_market_data_provider(
             client=stock_client
         )
         mutual_fund_provider=AmfiProvider(
-            client=text_client
+            client=amfi_client
+        )
+        mutual_fund_history_provider=MfapiProvider(
+            client=mfapi_client
         )
         return CombinedMarketDataProvider(
             stock_provider,
-            mutual_fund_provider
+            mutual_fund_provider,
+            mutual_fund_history_provider
         )
     raise ValueError(
         f"unsupported market data source: {source}"
