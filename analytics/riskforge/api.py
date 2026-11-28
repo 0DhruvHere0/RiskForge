@@ -88,7 +88,10 @@ def create_app(
                 "name": instrument.name,
                 "instrument_type": instrument.instrument_type,
                 "exchange": instrument.exchange,
-                "currency": instrument.currency
+                "currency": instrument.currency,
+                "source": data_service.source_for(
+                    instrument.symbol
+                )
             }
             for instrument in instruments
         ]

@@ -57,3 +57,12 @@ class PortfolioDataService:
             values=dict(zip(series.dates, series.closes))
             columns.append([values[item] for item in dates])
         return dates, np.asarray(columns, dtype=float).T
+    def source_for(self, symbol: str):
+        source_for=getattr(
+            self._provider,
+            "source_for",
+            None
+        )
+        if source_for is None:
+            return "configured_provider"
+        return source_for(symbol)

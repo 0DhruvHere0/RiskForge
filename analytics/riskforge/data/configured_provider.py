@@ -2,7 +2,6 @@ import os
 from datetime import date
 from .market_data_factory import MarketDataFactoryConfig
 from .market_data_factory import create_market_data_provider
-from .provider import InstrumentProvider
 class ConfiguredMarketDataProvider:
     def __init__(
         self,
@@ -31,9 +30,23 @@ class ConfiguredMarketDataProvider:
         )
     def search(self, query: str):
         return self._provider.search(query)
-    def history(self, symbol, start: date, end: date):
+    def history(
+        self,
+        symbol: str,
+        start: date,
+        end: date
+    ):
         return self._provider.history(
             symbol,
             start,
             end
         )
+    def source_for(self, symbol: str):
+        source_for=getattr(
+            self._provider,
+            "source_for",
+            None
+        )
+        if source_for is None:
+            return "configured_provider"
+        return source_for(symbol)
