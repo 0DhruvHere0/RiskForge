@@ -86,7 +86,9 @@ def create_app(
             {
                 "symbol": instrument.symbol,
                 "name": instrument.name,
-                "instrument_type": instrument.instrument_type,
+                "instrument_type": instrument.instrument_type.lower().replace(
+                    " ", "_"
+                ),
                 "exchange": instrument.exchange,
                 "currency": instrument.currency,
                 "source": data_service.source_for(
