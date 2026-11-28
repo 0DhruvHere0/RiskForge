@@ -7,3 +7,4 @@ __pycache__/
 .env.*
 !.env.example
 /rust/target/
+/rust/target/
