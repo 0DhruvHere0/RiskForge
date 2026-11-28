@@ -1,4 +1,0 @@
-*.rs linguist-language=Rust
-*.rs linguist-detectable=true
-*.rs linguist-vendored=false
-*.rs linguist-documentation=false
