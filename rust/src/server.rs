@@ -11,6 +11,7 @@ use crate::models::PortfolioForecastRequest;
 use crate::models::PortfolioForecastResponse;
 use crate::validation::validate_forecast_request;
 use crate::HealthResponse;
+use crate::errors::ErrorResponse;
 pub fn router() -> Router {
     Router::new().route(
         "/health",
@@ -26,12 +27,12 @@ pub fn router_with_client(
             get(health)
         )
         .route(
-            "/portfolio/forecast",
-            post(forecast)
-        )
-        .route(
             "/ready",
             get(ready)
+        )
+        .route(
+            "/portfolio/forecast",
+            post(forecast)
         )
         .with_state(
             Arc::new(client)
@@ -40,33 +41,54 @@ pub fn router_with_client(
 async fn health() -> Json<HealthResponse> {
     Json(health_response())
 }
+async fn ready(
+    State(client): State<Arc<AnalyticsClient>>
+) -> Result<
+    Json<HealthResponse>,
+    (StatusCode, Json<ErrorResponse>)
+> {
+    let response=client.health().await.map_err(
+        |_| (
+            StatusCode::SERVICE_UNAVAILABLE,
+            Json(
+                ErrorResponse::bad_gateway(
+                    "analytics service unavailable"
+                )
+            )
+        )
+    )?;
+    Ok(Json(response))
+}
 async fn forecast(
     State(client): State<Arc<AnalyticsClient>>,
     Json(request): Json<PortfolioForecastRequest>
 ) -> Result<
     Json<PortfolioForecastResponse>,
-    StatusCode
+    (StatusCode, Json<ErrorResponse>)
 > {
     validate_forecast_request(
         &request
     ).map_err(
-        |_| StatusCode::BAD_REQUEST
+        |error| (
+            StatusCode::BAD_REQUEST,
+            Json(
+                ErrorResponse::bad_request(
+                    error
+                )
+            )
+        )
     )?;
     let response=client.forecast(
         &request
     ).await.map_err(
-        |_| StatusCode::BAD_GATEWAY
-    )?;
-    Ok(Json(response))
-}
-async fn ready(
-    State(client): State<Arc<AnalyticsClient>>
-) -> Result<
-    Json<HealthResponse>,
-    StatusCode
-> {
-    let response=client.health().await.map_err(
-        |_| StatusCode::SERVICE_UNAVAILABLE
+        |_| (
+            StatusCode::BAD_GATEWAY,
+            Json(
+                ErrorResponse::bad_gateway(
+                    "analytics service unavailable"
+                )
+            )
+        )
     )?;
     Ok(Json(response))
 }
