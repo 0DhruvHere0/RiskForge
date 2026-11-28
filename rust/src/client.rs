@@ -50,4 +50,21 @@ impl AnalyticsClient {
             .json::<PortfolioForecastResponse>()
             .await
     }
+    pub async fn health(
+        &self
+    ) -> Result<
+        crate::HealthResponse,
+        reqwest::Error
+    > {
+        self.client
+            .get(format!(
+                "{}/health",
+                self.base_url
+            ))
+            .send()
+            .await?
+            .error_for_status()?
+            .json::<crate::HealthResponse>()
+            .await
+    }
 }

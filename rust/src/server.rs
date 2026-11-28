@@ -29,6 +29,10 @@ pub fn router_with_client(
             "/portfolio/forecast",
             post(forecast)
         )
+        .route(
+            "/ready",
+            get(ready)
+        )
         .with_state(
             Arc::new(client)
         )
@@ -52,6 +56,17 @@ async fn forecast(
         &request
     ).await.map_err(
         |_| StatusCode::BAD_GATEWAY
+    )?;
+    Ok(Json(response))
+}
+async fn ready(
+    State(client): State<Arc<AnalyticsClient>>
+) -> Result<
+    Json<HealthResponse>,
+    StatusCode
+> {
+    let response=client.health().await.map_err(
+        |_| StatusCode::SERVICE_UNAVAILABLE
     )?;
     Ok(Json(response))
 }
