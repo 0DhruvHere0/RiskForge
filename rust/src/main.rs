@@ -9,14 +9,21 @@ async fn main() {
         config.analytics_base_url,
         config.analytics_api_key
     );
-    let address=SocketAddr::from(
-        ([127, 0, 0, 1], 9000)
-    );
+    let address=format!(
+        "{}:{}",
+        config.server_host,
+        config.server_port
+    ).parse::<SocketAddr>().unwrap();
     let listener=tokio::net::TcpListener::bind(
         address
     ).await.unwrap();
     axum::serve(
         listener,
         router_with_client(client)
+    ).with_graceful_shutdown(
+        shutdown_signal()
     ).await.unwrap();
+}
+async fn shutdown_signal() {
+    tokio::signal::ctrl_c().await.unwrap();
 }

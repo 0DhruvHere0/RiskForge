@@ -3,6 +3,8 @@ use std::env;
 pub struct ServiceConfig {
     pub analytics_base_url: String,
     pub analytics_api_key: Option<String>,
+    pub server_host: String,
+    pub server_port: u16,
 }
 impl ServiceConfig {
     pub fn from_values(
@@ -14,6 +16,8 @@ impl ServiceConfig {
             analytics_api_key: analytics_api_key.filter(
                 |value| !value.trim().is_empty()
             ),
+            server_host: String::from("127.0.0.1"),
+            server_port: 9000,
         }
     }
     pub fn from_environment() -> Self {
@@ -25,9 +29,23 @@ impl ServiceConfig {
         let analytics_api_key=env::var(
             "RISKFORGE_API_KEY"
         ).ok();
-        Self::from_values(
+        let server_host=env::var(
+            "RISKFORGE_HOST"
+        ).unwrap_or_else(
+            |_| String::from("127.0.0.1")
+        );
+        let server_port=env::var(
+            "RISKFORGE_PORT"
+        ).ok().and_then(
+            |value| value.parse::<u16>().ok()
+        ).unwrap_or(9000);
+        Self {
             analytics_base_url,
-            analytics_api_key
-        )
+            analytics_api_key: analytics_api_key.filter(
+                |value| !value.trim().is_empty()
+            ),
+            server_host,
+            server_port,
+        }
     }
 }

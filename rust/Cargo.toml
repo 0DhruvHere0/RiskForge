@@ -7,6 +7,14 @@ axum = "0.8"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-tokio = { version = "1.43", features = ["macros", "rt-multi-thread", "net"] }
+tokio = {
+    version = "1.43",
+    features = [
+        "macros",
+        "rt-multi-thread",
+        "net",
+        "signal"
+    ]
+}
 [dev-dependencies]
 tower = { version = "0.5", features = ["util"] }
